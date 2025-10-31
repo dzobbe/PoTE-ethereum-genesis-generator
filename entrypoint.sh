@@ -162,6 +162,25 @@ gen_cl_config(){
           genesis_args+=(--additional-validators $validators_file)
         fi
 
+        # Optionally include TEE vendor flag if supported by the generator (forked builds)
+        if [ ! -z "$TEE_VENDOR" ]; then
+          case "${TEE_VENDOR}" in
+            SEV|sev|Sev|0)
+              tee_vendor_id=0
+              ;;
+            TDX|tdx|Tdx|1)
+              tee_vendor_id=1
+              ;;
+            CCA|cca|Cca|2)
+              tee_vendor_id=2
+              ;;
+            *)
+              tee_vendor_id="$TEE_VENDOR"
+              ;;
+          esac
+          genesis_args+=(--tee-vendor $tee_vendor_id)
+        fi
+
         /usr/local/bin/eth-genesis-state-generator "${genesis_args[@]}"
         echo "Genesis args: ${genesis_args[@]}"
         echo "Genesis block number: $(jq -r '.latest_execution_payload_header.block_number' /data/parsed/parsedConsensusGenesis.json)"
