@@ -122,7 +122,18 @@ gen_cl_config(){
         # Add BLOB_SCHEDULE if needed
         add_blob_schedule /data/metadata/config.yaml
 
-        envsubst < /config/cl/mnemonics.yaml > $tmp_dir/mnemonics.yaml
+        # Determine mnemonics file path
+        if [ ! -z "$MNEMONICS_FILE" ]; then
+          if [[ $MNEMONICS_FILE = /* ]]; then
+            mnemonics_file=$MNEMONICS_FILE
+          else
+            mnemonics_file="/config/$MNEMONICS_FILE"
+          fi
+        else
+          mnemonics_file="/config/cl/mnemonics.yaml"
+        fi
+
+        envsubst < $mnemonics_file > $tmp_dir/mnemonics.yaml
         # Conditionally override values if preset is "minimal"
         if [[ "$PRESET_BASE" == "minimal" ]]; then
           gen_minimal_config
@@ -136,7 +147,7 @@ gen_cl_config(){
         if [ "$WITHDRAWAL_TYPE" == "0x00" ]; then
           export WITHDRAWAL_ADDRESS="null"
         fi
-        envsubst < /config/cl/mnemonics.yaml > $tmp_dir/mnemonics.yaml
+        envsubst < $mnemonics_file > $tmp_dir/mnemonics.yaml
         # Generate genesis
         genesis_args+=(
           beaconchain
