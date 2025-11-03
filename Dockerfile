@@ -34,6 +34,7 @@ COPY --from=builder /work/poc-eth-beacon-genesis/bin/eth-genesis-state-generator
 COPY --from=builder /go/bin/eth2-val-tools /usr/local/bin/eth2-val-tools
 COPY --from=builder /go/bin/geth-hdwallet /usr/local/bin/geth-hdwallet
 
+COPY mnemonics.yaml /mnemonics.yaml
 COPY config-example /config
 COPY defaults /defaults
 COPY entrypoint.sh .
