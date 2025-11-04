@@ -1,23 +1,26 @@
 # Validators with SEV (AMD)
-- mnemonic: "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+- mnemonic: "${EL_AND_CL_MNEMONIC}"  # a 24 word BIP 39 mnemonic
   start: 0
   count: 5
-  balance: 32000000000
-  wd_prefix: "0x00"
-  tee_vendor: 0  # SEV for validators 0-4
+  balance: $VALIDATOR_BALANCE
+  wd_prefix: $WITHDRAWAL_TYPE
+  wd_address: $WITHDRAWAL_ADDRESS
+  tee_vendor: 2  # SEV for validators 0-4
 
-# Validators with TDX (Intel)
-- mnemonic: "legal winner thank year wave sausage worth useful legal winner thank yellow"
-  start: 6
+# # Validators with TDX (Intel)
+- mnemonic: "${EL_AND_CL_MNEMONIC}"  # a 24 word BIP 39 mnemonic
+  start: 5
   count: 5
-  balance: 32000000000
-  wd_prefix: "0x00"
+  balance: $VALIDATOR_BALANCE
+  wd_prefix: $WITHDRAWAL_TYPE
+  wd_address: $WITHDRAWAL_ADDRESS
   tee_vendor: 1  # TDX for validators 5-9
 
-# Validators with CCA (ARM)
-- mnemonic: "letter advice cage absurd amount doctor acoustic avoid letter advice cage above"
-  start: 11
+# # Validators with CCA (ARM)
+- mnemonic: "${EL_AND_CL_MNEMONIC}"  # a 24 word BIP 39 mnemonic
+  start: 10
   count: 5
-  balance: 32000000000
-  wd_prefix: "0x00"
+  balance: $VALIDATOR_BALANCE 
+  wd_prefix: $WITHDRAWAL_TYPE
+  wd_address: $WITHDRAWAL_ADDRESS
   tee_vendor: 2  # CCA for validators 10-14
