@@ -16,6 +16,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+ENV LOG_LEVEL=debug
 COPY apps /apps
 
 # Install jq with architecture detection
