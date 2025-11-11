@@ -1,7 +1,7 @@
 FROM golang:1.24 AS builder
 WORKDIR /work
-RUN git clone https://github.com/dzobbe/poc-eth-beacon-genesis.git  \
-    && cd poc-eth-beacon-genesis && make \
+RUN git clone https://github.com/dzobbe/PoTE-eth-beacon-genesis.git  \
+    && cd PoTE-eth-beacon-genesis && make \
     && go install github.com/protolambda/eth2-val-tools@latest \
     && go install github.com/miguelmota/go-ethereum-hdwallet/cmd/geth-hdwallet@latest
 
@@ -31,7 +31,7 @@ RUN ARCH=$(dpkg --print-architecture) && \
     chmod +x /usr/local/bin/jq
 
 ENV PATH="/root/.cargo/bin:${PATH}"
-COPY --from=builder /work/poc-eth-beacon-genesis/bin/eth-genesis-state-generator /usr/local/bin/eth-genesis-state-generator
+COPY --from=builder /work/PoTE-eth-beacon-genesis/bin/eth-genesis-state-generator /usr/local/bin/eth-genesis-state-generator
 COPY --from=builder /go/bin/eth2-val-tools /usr/local/bin/eth2-val-tools
 COPY --from=builder /go/bin/geth-hdwallet /usr/local/bin/geth-hdwallet
 
