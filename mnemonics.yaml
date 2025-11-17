@@ -5,7 +5,7 @@
   balance: $VALIDATOR_BALANCE
   wd_prefix: $WITHDRAWAL_TYPE
   wd_address: $WITHDRAWAL_ADDRESS
-  tee_vendor: 0  # SEV for validators 0-4
+  vendor_type: "sev"  # SEV for validators 0-4
 
 # # Validators with TDX (Intel)
 - mnemonic: "${EL_AND_CL_MNEMONIC}"  # a 24 word BIP 39 mnemonic
@@ -14,7 +14,7 @@
   balance: $VALIDATOR_BALANCE
   wd_prefix: $WITHDRAWAL_TYPE
   wd_address: $WITHDRAWAL_ADDRESS
-  tee_vendor: 1  # TDX for validators 5-9
+  vendor_type: "tdx"  # TDX for validators 5-9
 
 # # Validators with CCA (ARM)
 - mnemonic: "${EL_AND_CL_MNEMONIC}"  # a 24 word BIP 39 mnemonic
@@ -23,4 +23,4 @@
   balance: $VALIDATOR_BALANCE 
   wd_prefix: $WITHDRAWAL_TYPE
   wd_address: $WITHDRAWAL_ADDRESS
-  tee_vendor: 2  # CCA for validators 10-14
+  vendor_type: "cca"  # CCA for validators 10-14
